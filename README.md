@@ -1,4 +1,5 @@
 Instagram Volume & UI Control 🎧
+
 Uma extensão para Google Chrome desenvolvida para melhorar a experiência de interface do usuário no Instagram Web, focando no controle de volume e na limpeza visual dos elementos sobre o vídeo.
 
 🚀 Funcionalidades
