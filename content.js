@@ -13,6 +13,14 @@ function aplicarVolumePersistente() {
                     if (video.volume !== volumeSalvo) {
                         video.volume = volumeSalvo;
                     }
+                    if (!video.dataset.syncActive) { 
+                        video.addEventListener('volumechange', () => {
+                            const novoVolume = video.volume;
+                            chrome.storage.local.set({ 'lastVolume': novoVolume });
+                        });
+
+                        video.dataset.syncActive = "true";
+                    }
                 });
             });
         }
