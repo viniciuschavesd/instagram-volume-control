@@ -35,11 +35,16 @@ aplicarVolumePersistente();
 const observer = new MutationObserver(() => {
     try {
         if (typeof chrome !== 'undefined' && chrome.runtime?.id) {
-        
+            
             aplicarVolumePersistente();
-            aplicarLogicaDeControle();
-            subirDivs();
 
+            // Só aplica lógica de UI se estiver ativado no storage
+            chrome.storage.local.get(['controlesAtivos'], (result) => {
+                if (result.controlesAtivos !== false) {
+                    aplicarLogicaDeControle();
+                    subirDivs();
+                }
+            });
         }
     } catch (e) { }
 });
