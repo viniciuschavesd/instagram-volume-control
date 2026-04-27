@@ -11,6 +11,8 @@ Uma extensão para Google Chrome desenvolvida para melhorar a experiência de in
 
   - Filtro Seletivo: A lógica de movimentação das divs só é aplicada em posts que contêm vídeos, preservando o layout original de fotos.
 
+  - Botão para desligar os controles de vídeo no popup da extensão, recarregando a página para evitar bugs.
+
 🛠️ Tecnologias Utilizadas
   - JavaScript (ES6+): Lógica de manipulação do DOM e MutationObserver.
 
