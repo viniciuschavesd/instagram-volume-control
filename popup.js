@@ -2,7 +2,6 @@ const slider = document.getElementById('volumeSlider');
 const display = document.getElementById('val');
 const btnToggle = document.getElementById('toggleControles');
 
-// Carrega estado inicial
 chrome.storage.local.get(['lastVolume', 'controlesAtivos'], (result) => {
     // Volume
     if (result.lastVolume !== undefined) {
@@ -22,7 +21,7 @@ btnToggle.addEventListener('click', () => {
         chrome.storage.local.set({ controlesAtivos: novoEstado });
         atualizarBotaoUI(novoEstado);
         
-        // Recarrega a aba para aplicar/remover mudanças imediatamente (opcional)
+        // Recarrega a aba para aplicar/remover mudanças imediatamente para não bugar
         chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
             if (tabs[0]?.id) chrome.tabs.reload(tabs[0].id);
         });
