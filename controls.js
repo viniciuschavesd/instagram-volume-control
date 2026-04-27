@@ -1,3 +1,25 @@
+const carregarEstilosExternos = () => {
+    const cssBruto = `
+        div[style*="z-index: 9999"] {
+            opacity: 0.3 !important;
+            transition: opacity 0.3s ease-in-out !important;
+        }
+
+        article:hover div[style*="z-index: 9999"],
+        div._aa8k:hover div[style*="z-index: 9999"],
+        div[style*="z-index: 9999"]:hover {
+            opacity: 1 !important;
+        }
+    `;
+
+    const styleTag = document.createElement('style');
+    styleTag.id = 'estilo-volume-custom';
+    styleTag.textContent = cssBruto;
+    
+    document.head.appendChild(styleTag);
+
+};
+
 const subirDivs = () => {
     // Liste aqui os nomes das classes EXATOS
     const classesParaMover = ['x1m7ywf0 x12ol6y4 x180vkcf x1khw62d x709u02 x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x14vqqas xbmvrgn xod5an3 x1diwwjn x13dflua x19991ni x1ey2m1c x1o0tod x10l6tqk x1hc1fzr', 'html-div xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x9f619 xjbqb8w x78zum5 x15mokao x1ga7v0g x16uus16 xbiv7yw x10l6tqk x1ey2m1c xtijo5x x1plvlek xryxfnj x1c4vz4f x2lah0s xdt5ytf xqjyukv x1qjc9v5 x1oa3qoh x1nhvcw1'];
@@ -15,6 +37,7 @@ const subirDivs = () => {
 
                 if (temVideoNoContexto) {
                     // Se for vídeo, aplica o movimento original
+                    carregarEstilosExternos();
                     div.style.setProperty('transform', 'translateY(-60px)', 'important');
                     div.style.setProperty('z-index', '9999', 'important');
                     div.style.setProperty('pointer-events', 'auto', 'important');
@@ -61,26 +84,3 @@ const aplicarLogicaDeControle = () => {
     });
 };
 
-const carregarEstilosExternos = () => {
-    const cssBruto = `
-        div[style*="z-index: 9999"] {
-            opacity: 0.3 !important;
-            transition: opacity 0.3s ease-in-out !important;
-        }
-
-        article:hover div[style*="z-index: 9999"],
-        div._aa8k:hover div[style*="z-index: 9999"],
-        div[style*="z-index: 9999"]:hover {
-            opacity: 1 !important;
-        }
-    `;
-
-    const styleTag = document.createElement('style');
-    styleTag.id = 'estilo-volume-custom';
-    styleTag.textContent = cssBruto;
-    
-    document.head.appendChild(styleTag);
-
-};
-
-carregarEstilosExternos();
