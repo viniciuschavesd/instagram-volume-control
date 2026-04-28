@@ -30,7 +30,6 @@ const carregarEstilosExternos = () => {
 carregarEstilosExternos();
 
 const subirDivs = () => {
-
     const classesParaMover = [
         // ÍNDICE 0: Pessoas Marcadas (Esquerda)
         'x1m7ywf0 x12ol6y4 x180vkcf x1khw62d x709u02 x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x14vqqas xbmvrgn xod5an3 x1diwwjn x13dflua x19991ni x1ey2m1c x1o0tod x10l6tqk x1hc1fzr', 
