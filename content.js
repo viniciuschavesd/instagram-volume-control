@@ -6,7 +6,7 @@ function aplicarVolumePersistente() {
 
                 if (chrome.runtime.lastError) return;
 
-                const volumeSalvo = result.lastVolume !== undefined ? result.lastVolume : 0.5;
+                const volumeSalvo = result.lastVolume !== undefined ? result.lastVolume : 0.3;
                 const videos = document.querySelectorAll('video');
 
                 videos.forEach(video => {
@@ -30,24 +30,35 @@ function aplicarVolumePersistente() {
 
 aplicarVolumePersistente();
 
-
+let timeoutObserver = null;
 
 const observer = new MutationObserver(() => {
-    try {
-        if (typeof chrome !== 'undefined' && chrome.runtime?.id) {
-            
-            aplicarVolumePersistente();
+    // Limpa o agendamento anterior (Debounce)
+    clearTimeout(timeoutObserver);
 
-            // Só aplica lógica de UI se estiver ativado no storage
-            chrome.storage.local.get(['controlesAtivos'], (result) => {
-                if (result.controlesAtivos !== false) {
-                    aplicarLogicaDeControle();
-                    subirDivs();
-                }
-            });
-        }
-    } catch (e) { }
+    // Agenda a execução para 100ms após a última mudança no DOM
+    timeoutObserver = setTimeout(() => {
+        try {
+            if (typeof chrome !== 'undefined' && chrome.runtime?.id) {
+                
+                aplicarVolumePersistente();
+
+                chrome.storage.local.get(['controlesAtivos'], (result) => {
+                    if (result.controlesAtivos !== false) {
+                        aplicarLogicaDeControle();
+                            
+                        // Filtro de rota: decide qual função chamar sem "procurar" à toa
+                        if (window.location.pathname.includes('/reels/')) {
+                            subirDivsReels();
+                        } else {
+                            subirDivs();
+                        }
+                    }
+                });
+            }
+        } catch (e) { }
+    }, 100); 
 });
 
-
 observer.observe(document.body, { childList: true, subtree: true });
+
