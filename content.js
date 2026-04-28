@@ -6,7 +6,7 @@ function aplicarVolumePersistente() {
 
                 if (chrome.runtime.lastError) return;
 
-                const volumeSalvo = result.lastVolume !== undefined ? result.lastVolume : 0.3;
+                const volumeSalvo = result.lastVolume !== undefined ? result.lastVolume : 0.15;
                 const videos = document.querySelectorAll('video');
 
                 videos.forEach(video => {
