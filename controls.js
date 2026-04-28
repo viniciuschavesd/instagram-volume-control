@@ -30,9 +30,6 @@ const carregarEstilosExternos = () => {
 carregarEstilosExternos();
 
 const subirDivs = () => {
-    if (window.location.pathname.includes('/reels/') || window.location.pathname.includes('/reel/')) {
-        return;
-    }
 
     const classesParaMover = [
         // ÍNDICE 0: Pessoas Marcadas (Esquerda)
@@ -136,7 +133,7 @@ const aplicarLogicaDeControle = () => {
 };
 
 const subirDivsReels = () => {
-    if (!window.location.pathname.includes('/reels/')) return;
+    if (!window.location.pathname.includes('/reels/') || !window.location.pathname.includes('/reel/')) return;
 
     const classesReels = [
         'x191j7n5 xdg88n9 x10l6tqk x1vjfegm',
